@@ -1,0 +1,84 @@
+========================================
+CAMPUS ECOMMERCE WEB - HOW TO RUN
+========================================
+
+OPTION 1: Run with Maven (Recommended)
+---------------------------------------
+1. Make sure you have Java 17 or higher installed
+2. Make sure MySQL is running with the database 'campus_ecommerce'
+3. Open terminal in the CampusEcommerceWeb folder
+4. Run: mvn spring-boot:run
+5. Open browser and go to: http://localhost:8080/index.html
+
+OPTION 2: Run without Maven (Using compiled classes)
+----------------------------------------------------
+If Maven is not working, you can run the compiled classes directly:
+
+1. Make sure you have Java 17 or higher installed
+2. Make sure MySQL is running with the database 'campus_ecommerce'
+3. Open terminal in the CampusEcommerceWeb folder
+4. Run: java -cp "target/classes;path/to/mysql-connector.jar;path/to/spring-jars/*" com.campus.ecommerce.CampusEcommerceWebApplication
+
+Note: You'll need to download the required JAR files manually for this option.
+
+OPTION 3: Open HTML files directly (Frontend Only)
+--------------------------------------------------
+If you just want to see the website design without backend:
+
+1. Navigate to: CampusEcommerceWeb/src/main/resources/static/
+2. Double-click on index.html to open in browser
+3. You can browse the pages, but API calls won't work without the backend running
+
+WEBSITE PAGES:
+--------------
+- index.html - Home page with featured products
+- login.html - Login page for vendors and buyers
+- register.html - Registration page
+- vendor-dashboard.html - Vendor dashboard to add and manage products
+- buyer-dashboard.html - Buyer dashboard to browse and purchase products
+
+DEFAULT TEST USERS (if you have data in database):
+--------------------------------------------------
+You can register new users through the website or use existing ones from your database.
+
+TROUBLESHOOTING:
+----------------
+1. If you get "Connection refused" errors:
+   - Make sure the Spring Boot backend is running on port 8080
+   - Check if MySQL is running and accessible
+
+2. If you get CORS errors:
+   - The controllers already have @CrossOrigin annotation
+   - Make sure you're accessing via http://localhost:8080/
+
+3. If Maven is not working:
+   - Try: mvn clean install
+   - Or use your IDE's built-in Maven tools
+   - Or run the application directly from your IDE (IntelliJ/Eclipse)
+
+4. If database connection fails:
+   - Check application.properties for correct database credentials
+   - Make sure MySQL is running
+   - Verify database 'campus_ecommerce' exists
+
+FEATURES:
+---------
+✅ User Registration (Vendor/Buyer)
+✅ User Login with role-based redirection
+✅ Vendor Dashboard - Add and view products
+✅ Buyer Dashboard - Browse products and add to cart
+✅ Shopping cart functionality
+✅ Responsive design
+✅ Real-time product listing
+
+BACKEND API ENDPOINTS:
+---------------------
+- GET    /products - Get all products
+- POST   /products/add - Add new product
+- GET    /products/vendor/{vendorId} - Get products by vendor
+- GET    /users - Get all users
+- POST   /users/register - Register new user
+- POST   /users/login - Login user
+
+========================================
+

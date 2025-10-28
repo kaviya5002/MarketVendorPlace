@@ -1,0 +1,66 @@
+========================================
+HOW TO RUN FROM INTELLIJ IDEA
+========================================
+
+Since Maven is not available in your command line, here's how to run from IntelliJ:
+
+METHOD 1: Run Main Application Class
+-------------------------------------
+1. Open IntelliJ IDEA
+2. Open the project: CampusEcommerceWeb
+3. Navigate to: src/main/java/com/campus/ecommerce/CampusEcommerceWebApplication.java
+4. Right-click on the file
+5. Select "Run 'CampusEcommerceWebApplication.main()'"
+6. Wait for the server to start (you'll see "Started CampusEcommerceWebApplication" in console)
+7. Open browser and go to: http://localhost:8080/index.html
+
+METHOD 2: Use Maven Tool Window
+--------------------------------
+1. Open IntelliJ IDEA
+2. Click on "Maven" tab on the right side
+3. Expand "CampusEcommerceWeb" → "Plugins" → "spring-boot"
+4. Double-click on "spring-boot:run"
+5. Wait for the server to start
+6. Open browser and go to: http://localhost:8080/index.html
+
+METHOD 3: Use Run Configuration
+--------------------------------
+1. Open IntelliJ IDEA
+2. Click "Run" menu → "Edit Configurations"
+3. Click "+" → "Spring Boot"
+4. Name: "Campus Ecommerce Server"
+5. Main class: com.campus.ecommerce.CampusEcommerceWebApplication
+6. Click "OK"
+7. Click the green "Run" button
+8. Open browser and go to: http://localhost:8080/index.html
+
+WEBSITE LINKS (after server is running):
+-----------------------------------------
+🏠 Home Page:           http://localhost:8080/index.html
+📝 Register:            http://localhost:8080/register.html
+🔐 Login:               http://localhost:8080/login.html
+💼 Vendor Dashboard:    http://localhost:8080/vendor-dashboard.html
+🛒 Buyer Dashboard:     http://localhost:8080/buyer-dashboard.html
+
+API ENDPOINTS:
+--------------
+📦 All Products:        http://localhost:8080/products
+👥 All Users:           http://localhost:8080/users
+
+TROUBLESHOOTING:
+----------------
+❌ If you get "Port 8080 already in use":
+   - Stop any other application using port 8080
+   - Or change the port in application.properties: server.port=8081
+
+❌ If you get database connection errors:
+   - Make sure MySQL is running
+   - Check username/password in application.properties
+   - Verify database 'campus_ecommerce' exists
+
+❌ If IntelliJ shows Maven errors:
+   - Click "Maven" tab → Click refresh icon (circular arrows)
+   - Or: File → Invalidate Caches → Restart
+
+========================================
+

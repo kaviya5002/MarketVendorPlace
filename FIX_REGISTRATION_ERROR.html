@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix Registration Error - Backend Not Running</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .error-header {
+            background: #e74c3c;
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .error-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .error-header p {
+            font-size: 1.2rem;
+        }
+        .status-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .status-card {
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .status-ok {
+            background: #d4edda;
+            border: 2px solid #28a745;
+        }
+        .status-error {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+        }
+        .status-card h3 {
+            margin-bottom: 0.5rem;
+        }
+        .status-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .solution {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .solution h2 {
+            color: #856404;
+            margin-bottom: 1rem;
+        }
+        .steps {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .step {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .step h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        .step p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        .step code {
+            background: #ecf0f1;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+        .test-section {
+            background: #d1ecf1;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .test-section h3 {
+            color: #0c5460;
+            margin-bottom: 1rem;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        button.success {
+            background: #28a745;
+        }
+        button.success:hover {
+            background: #218838;
+        }
+        #testResult {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+        .success-msg {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error-msg {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .screenshot {
+            background: #ecf0f1;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-header">
+            <div style="font-size: 4rem;">⚠️</div>
+            <h1>Registration Error Detected!</h1>
+            <p>"Error connecting to server"</p>
+        </div>
+
+        <div class="status-box">
+            <div class="status-card status-ok">
+                <div class="status-icon">✅</div>
+                <h3>Frontend Server</h3>
+                <p><strong>Running</strong></p>
+                <p>http://localhost:3000</p>
+            </div>
+            <div class="status-card status-error">
+                <div class="status-icon">❌</div>
+                <h3>Backend Server</h3>
+                <p><strong>NOT Running</strong></p>
+                <p>http://localhost:8080</p>
+            </div>
+        </div>
+
+        <div class="solution">
+            <h2>💡 Solution: Start the Backend Server</h2>
+            <p>Your website frontend is working, but it needs the backend API server to handle registration, login, and database operations.</p>
+        </div>
+
+        <div class="steps">
+            <h2 style="margin-bottom: 1.5rem; color: #2c3e50;">🚀 How to Start Backend (Choose One Method)</h2>
+            
+            <div class="step">
+                <h3>Method 1: Run from IntelliJ IDEA (Recommended)</h3>
+                <p>1. Open <strong>IntelliJ IDEA</strong></p>
+                <p>2. Navigate to: <code>src/main/java/com/campus/ecommerce/CampusEcommerceWebApplication.java</code></p>
+                <p>3. <strong>Right-click</strong> on the file → Select <strong>"Run 'CampusEcommerceWebApplication.main()'"</strong></p>
+                <p>4. Wait for console to show: <code>Started CampusEcommerceWebApplication</code></p>
+                <div class="screenshot">
+                    📸 Look for the green ▶️ play button next to the class name in IntelliJ
+                </div>
+            </div>
+
+            <div class="step">
+                <h3>Method 2: Use IntelliJ Maven Panel</h3>
+                <p>1. Open <strong>IntelliJ IDEA</strong></p>
+                <p>2. Click <strong>"Maven"</strong> tab on the right side</p>
+                <p>3. Expand: <code>CampusEcommerceWeb → Plugins → spring-boot</code></p>
+                <p>4. Double-click: <code>spring-boot:run</code></p>
+            </div>
+
+            <div class="step">
+                <h3>Method 3: Install Maven Wrapper (Advanced)</h3>
+                <p>1. Double-click <code>INSTALL_MAVEN.bat</code> in your project folder</p>
+                <p>2. After installation, run: <code>mvnw.cmd spring-boot:run</code></p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔍 Test if Backend is Running</h3>
+            <p>Click the button below to check if your backend server is running:</p>
+            <button onclick="testBackend()">Test Backend Connection</button>
+            <button onclick="testProducts()">Test Products API</button>
+            <button onclick="testUsers()">Test Users API</button>
+            <div id="testResult"></div>
+        </div>
+
+        <div class="steps">
+            <h2 style="margin-bottom: 1.5rem; color: #2c3e50;">✅ After Backend Starts</h2>
+            
+            <div class="step">
+                <h3>Step 1: Verify Backend is Running</h3>
+                <p>You should see this in IntelliJ console:</p>
+                <code>Tomcat started on port(s): 8080 (http)</code>
+            </div>
+
+            <div class="step">
+                <h3>Step 2: Test the APIs</h3>
+                <p>Open in browser: <a href="http://localhost:8080/products" target="_blank">http://localhost:8080/products</a></p>
+                <p>You should see <code>[]</code> or a list of products</p>
+            </div>
+
+            <div class="step">
+                <h3>Step 3: Try Registration Again</h3>
+                <p>Go back to: <a href="http://localhost:3000/register.html" target="_blank">http://localhost:3000/register.html</a></p>
+                <p>Fill the form and click Register - it should work now! ✅</p>
+            </div>
+        </div>
+
+        <div style="background: #e8f5e9; padding: 1.5rem; border-radius: 10px; border-left: 5px solid #4caf50;">
+            <h3 style="color: #2e7d32; margin-bottom: 0.5rem;">📋 Quick Checklist</h3>
+            <p>✓ MySQL is running</p>
+            <p>✓ Database 'campus_ecommerce' exists</p>
+            <p>✓ IntelliJ IDEA is open</p>
+            <p>✓ Run CampusEcommerceWebApplication.java</p>
+            <p>✓ See "Started" message in console</p>
+            <p>✓ Test http://localhost:8080/products</p>
+            <p>✓ Try registration again!</p>
+        </div>
+    </div>
+
+    <script>
+        async function testBackend() {
+            const resultDiv = document.getElementById('testResult');
+            resultDiv.innerHTML = '<p>Testing backend connection...</p>';
+            
+            try {
+                const response = await fetch('http://localhost:8080/products');
+                if (response.ok) {
+                    resultDiv.className = 'success-msg';
+                    resultDiv.innerHTML = `
+                        <strong>✅ SUCCESS!</strong><br>
+                        Backend server is running on port 8080!<br>
+                        You can now use registration and all features.<br>
+                        <a href="http://localhost:3000/register.html" target="_blank">Go to Registration Page</a>
+                    `;
+                } else {
+                    throw new Error('Server responded with error');
+                }
+            } catch (error) {
+                resultDiv.className = 'error-msg';
+                resultDiv.innerHTML = `
+                    <strong>❌ BACKEND NOT RUNNING</strong><br>
+                    Could not connect to http://localhost:8080<br>
+                    Please start the Spring Boot application from IntelliJ IDEA.<br>
+                    Error: ${error.message}
+                `;
+            }
+        }
+
+        async function testProducts() {
+            const resultDiv = document.getElementById('testResult');
+            resultDiv.innerHTML = '<p>Testing products API...</p>';
+            
+            try {
+                const response = await fetch('http://localhost:8080/products');
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.className = 'success-msg';
+                    resultDiv.innerHTML = `
+                        <strong>✅ Products API Working!</strong><br>
+                        Found ${data.length} products in database.<br>
+                        Response: <code>${JSON.stringify(data).substring(0, 100)}...</code>
+                    `;
+                } else {
+                    throw new Error('API responded with error');
+                }
+            } catch (error) {
+                resultDiv.className = 'error-msg';
+                resultDiv.innerHTML = `
+                    <strong>❌ Cannot reach Products API</strong><br>
+                    Backend server is not running on port 8080.<br>
+                    Error: ${error.message}
+                `;
+            }
+        }
+
+        async function testUsers() {
+            const resultDiv = document.getElementById('testResult');
+            resultDiv.innerHTML = '<p>Testing users API...</p>';
+            
+            try {
+                const response = await fetch('http://localhost:8080/users');
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.className = 'success-msg';
+                    resultDiv.innerHTML = `
+                        <strong>✅ Users API Working!</strong><br>
+                        Found ${data.length} users in database.<br>
+                        Response: <code>${JSON.stringify(data).substring(0, 100)}...</code>
+                    `;
+                } else {
+                    throw new Error('API responded with error');
+                }
+            } catch (error) {
+                resultDiv.className = 'error-msg';
+                resultDiv.innerHTML = `
+                    <strong>❌ Cannot reach Users API</strong><br>
+                    Backend server is not running on port 8080.<br>
+                    Error: ${error.message}
+                `;
+            }
+        }
+
+        // Auto-test on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(testBackend, 1000);
+        });
+    </script>
+</body>
+</html>
+

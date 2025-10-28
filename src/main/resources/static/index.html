@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Ecommerce - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">🛒 Campus Ecommerce</h1>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Welcome to Campus Ecommerce</h1>
+            <p>Your one-stop shop for campus products</p>
+            <div class="hero-buttons">
+                <a href="register.html" class="btn btn-primary">Get Started</a>
+                <a href="login.html" class="btn btn-secondary">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="features">
+            <h2>Why Choose Us?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛍️</div>
+                    <h3>Easy Shopping</h3>
+                    <p>Browse and buy products from campus vendors</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Vendor Dashboard</h3>
+                    <p>Manage your products and track sales</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Analytics</h3>
+                    <p>View detailed sales reports and insights</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure</h3>
+                    <p>Safe and secure transactions</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-preview" id="productsSection">
+            <h2>Featured Products</h2>
+            <div id="productsList" class="product-grid">
+                <p class="loading">Loading products...</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Campus Ecommerce. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Load products on home page
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('http://localhost:8080/products');
+                const products = await response.json();
+                
+                const productsList = document.getElementById('productsList');
+                
+                if (products.length === 0) {
+                    productsList.innerHTML = '<p class="no-data">No products available yet.</p>';
+                } else {
+                    productsList.innerHTML = products.slice(0, 8).map(product => `
+                        <div class="product-card">
+                            <h3>${product.name}</h3>
+                            <p class="price">₹${product.price}</p>
+                            <p class="stock">Stock: ${product.stock}</p>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading products:', error);
+                document.getElementById('productsList').innerHTML = 
+                    '<p class="error">Unable to load products. Please make sure the backend server is running.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
+
